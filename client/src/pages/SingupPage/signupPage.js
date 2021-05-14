@@ -1,95 +1,93 @@
 import React from "react";
 
-function SignupPage() {
-  return (
-    <div>
-      <h1>Create Account</h1>
-      <form id ="signup-form">
-        <div className="form-group">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            id="login-password"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div className="form-group">
-          <label>User Name</label>
-          <input
-            type="username"
-            className="form-control"
-            id="signUp-username"
-          />
-        </div>
+class signupPage extends React.Component {
+  state = {
+    username: "",
+    password: "",
+  };
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            id="signUp-password"
-          />
-        </div>
-        <div className="form-group">
-          <label>Skill (Language)</label>
-          <input type="string" className="form-control" id="signup-skill" />
-        </div>
-        <div className="form-group">
-          <label>Location</label>
-          <input
-            type="string"
-            className="form-control"
-            id="signup-location"
-          />
-        </div>
-        <button type="submit" className="btn btn-primary rounded-pill">
-          Sign Up
-        </button>
-      </form>
-    </div>
-  );
- 
- 
-  async function signupFormHandler(event) {
-    event.preventDefault();
-    
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ name: value });
+    console.log(name);
+  };
 
-    // getting data from the form
-    const username = document.querySelector('#signUp-username').value;
-    console.log(username);
-    const password = document.querySelector('#signUp-password').value;
-    console.log(password);
-    if (username && password) {
-      console.log('hello');
-        const response = await fetch('/api/users', {
-          method: 'POST',
-          body: JSON.stringify({
-            username,
-            password
-          }),
-          headers: { 'Content-Type': 'application/json' }
-        }); 
-    // check the response status
-    if (response.ok) {
-        console.log('success');
+  handleSubmit = (e) => {
+    console.log("button clicked");
+    e.preventDefault();
+  };
 
-        // loginHandler();
-        document.location.replace('/profile');
+  render() {
+    return (
+      <div>
+        <h1>Create Account</h1>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              id="login-password"
+              aria-describedby="emailHelp"
+              required
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>User Name</label>
+            <input
+              type="username"
+              name="userName"
+              className="form-control"
+              id="signUp-username"
+              required
+              onChange={this.handleChange}
+            />
+          </div>
 
-      } else {
-        alert(response.statusText);
-      }
-    }
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              id="signUp-password"
+              required
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Skill (Language)</label>
+            <input
+              type="string"
+              className="form-control"
+              id="signup-skill"
+              required
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Location</label>
+            <input
+              type="string"
+              className="form-control"
+              id="signup-location"
+              required
+              onChange={this.handleChange}
+            />
+          </div>
+          <button
+            onSubmit={this.handleSubmit}
+            type="submit"
+            className="btn btn-primary rounded-pill"
+          >
+            Sign Up
+          </button>
+        </form>
+      </div>
+    );
+  }
 }
 
-
-
-
-
-
-}
-
-document.querySelector('#signup-form').addEventListener('submit', signupFormHandler) 
-
-export default SignupPage;
+export default signupPage;
