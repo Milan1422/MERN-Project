@@ -6,6 +6,7 @@ import "./App.css";
 import Landing from "./pages/Landing/landing";
 import SignupPage from "./pages/SingupPage/signupPage";
 import LoginPage from "./pages/LoginPage/loginpage";
+import Profile from "./pages/Profile/profilePage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" exact component={Landing} />
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignupPage} />
+        <Route path="/profile" exact component={Profile} />
       </Switch>
     </Router>
   );
