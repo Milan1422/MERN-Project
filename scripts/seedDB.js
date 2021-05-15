@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const db = require("../models");
+const img = require("../client/src/assets")
 
 // This file empties the Users collection and inserts the users below
 
@@ -10,31 +11,39 @@ mongoose.connect(
 
 const userSeed = [
   {
+    username: "Jesus Milan",
     email: "jesusm@email.com",
     password: "password123",
     skill: "Javascript",
     location: "Kennesaw",
+    image: "https://randomuser.me/api/portraits/lego/6.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Lee Spaulding",
     email: "lees@email.com",
     password: "password123",
     skill: "HTML",
     location: "Lithonia",
+    image: "https://randomuser.me/api/portraits/lego/0.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Anthony Dominguez",
     email: "anthonyd@email.com",
     password: "password123",
     skill: "CSS",
     location: "Duluth",
+    image: "https://randomuser.me/api/portraits/lego/8.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Eiman Zarrinhonar",
     email: "eimanz@email.com",
     password: "password123",
     skill: "Javascript",
     location: "Atlanta",
+    image: "https://randomuser.me/api/portraits/lego/5.jpg",
     date: new Date(Date.now())
   },
 ];
