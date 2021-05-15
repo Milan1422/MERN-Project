@@ -1,0 +1,47 @@
+.main{
+    background-color:navy;
+    display: inline-block;
+    width:100%;
+    height:100vh;
+}
+
+.main .wrapper {
+    background-color:"gold";
+    display:flex;
+    flex-direction: row;
+    height:100%;
+}
+
+.main { 
+    background-color:grey;
+    background-size: cover;
+    display:inline-block;
+    width: 150%;
+    height: 100%;
+}
+ 
+.main .items-wrapper {
+    width:100%;
+    display:flex;
+    flex-direction: column;   
+    justify-content: center; 
+    position:relative
+}
+
+.main .center {
+    margin: top 155px;
+    margin-bottom:auto;
+    margin-left:auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.main .center  {
+    display:block;
+    width:auto;
+    text-align:center;
+}
+
+
+
+

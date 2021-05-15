@@ -1,11 +1,15 @@
 import React from 'react';
+import { COOLBLUE, HOTRED,  DirtyGold, Twilight } from "../../utils/colors";
+
 
 function LoginBtn () {
     return(
-        <button className='btn btn-danger rounded-pill'>
-            Log In
-        </button>
+        <div className="d-grid gap-2 d-md-block">
+      <button style={{ background:  Twilight }} className="btn rounded-pill mt-2">
+        Log In
+      </button>
+    </div>
     )
-}
+};
 
 export default LoginBtn;
