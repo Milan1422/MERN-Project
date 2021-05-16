@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const db = require("../models");
-const img = require("../client/src/assets")
 
 // This file empties the Users collection and inserts the users below
 

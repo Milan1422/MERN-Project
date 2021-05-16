@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const bcrypt = require("bcrypt")
 
 const userSchema = new Schema({
   username: { type: String, required: true },
@@ -8,14 +9,15 @@ const userSchema = new Schema({
   skill: { type: String},
   location: { type: String},
   image: {type: String},
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  isDeleted: { type: Boolean, default: false}
 });
 
-Schema.methods.generateHash = function (password) {
+userSchema.methods.generateHash = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
 }
 
-Schema.methods.validPassword = function(password) {
+userSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 }
 
