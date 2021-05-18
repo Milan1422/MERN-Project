@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import Navbar from "../../components/NavBar/Navbar";
+import "../Profile/profilePage.css"
 
 function Profile() {
   const [users, setUsers] = useState([]);
@@ -21,11 +22,11 @@ function Profile() {
     <div>
       <Navbar />
       {users.length ? (
-        <div className="carousel slide" data-ride="carousel">
+        <div>
           {users.map((user) => {
             return (
-              <div className="card-deck carousel-inner" key={user._id}>
-                <div className="card carousel-item active">
+              <div className="card-deck scroll" key={user._id}>
+                <div className="card">
                   <img
                     src={user.image}
                     className="card-img-top"
