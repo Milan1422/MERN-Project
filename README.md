@@ -1,0 +1,3 @@
+# Code Pal: Full Stack MERN Application
+
+This is going to be a full stack application that will be a forum for Coders like us. They will be able to create a profile to connect with other coders, upload a picture, select language of choice, etc. It will be setup in the backend with Mongo DB and built on the frontend with React. We will be using authentication with Facebook or a user can sign up with their own username and password. There are little attributes on the pages that only coders would get enjoy the application!

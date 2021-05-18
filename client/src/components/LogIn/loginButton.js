@@ -1,5 +1,5 @@
 import React from 'react';
-import { COOLBLUE, HOTRED,  DirtyGold, Twilight } from "../../utils/colors";
+import {Twilight } from "../../utils/colors";
 
 
 function LoginBtn () {

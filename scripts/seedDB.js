@@ -12,6 +12,7 @@ const userSeed = [
   {
     username: "Jesus Milan",
     email: "jesusm@email.com",
+    username: "rebel",
     password: "password123",
     skill: "Javascript",
     location: "Kennesaw",
@@ -21,6 +22,7 @@ const userSeed = [
   {
     username: "Lee Spaulding",
     email: "lees@email.com",
+    username: "sheriff",
     password: "password123",
     skill: "HTML",
     location: "Lithonia",
@@ -30,6 +32,7 @@ const userSeed = [
   {
     username: "Anthony Dominguez",
     email: "anthonyd@email.com",
+    username: "bandit",
     password: "password123",
     skill: "CSS",
     location: "Duluth",
@@ -39,6 +42,7 @@ const userSeed = [
   {
     username: "Eiman Zarrinhonar",
     email: "eimanz@email.com",
+    username: "outlaw",
     password: "password123",
     skill: "Javascript",
     location: "Atlanta",
