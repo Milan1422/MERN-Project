@@ -1,47 +1,90 @@
-.main{
-    background-color:navy;
-    display: inline-block;
-    width:100%;
-    height:100vh;
-}
-
-.main .wrapper {
-    background-color:"gold";
-    display:flex;
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .main .wrapper {
+    display: flex;
     flex-direction: row;
-    height:100%;
-}
-
-.main { 
-    background-color:grey;
-    background-size: cover;
-    display:inline-block;
-    width: 150%;
     height: 100%;
-}
- 
-.main .items-wrapper {
-    width:100%;
-    display:flex;
-    flex-direction: column;   
-    justify-content: center; 
-    position:relative
-}
-
-.main .center {
-    margin: top 155px;
-    margin-bottom:auto;
-    margin-left:auto;
+  }
+  
+  .main .left,
+  .main .right {
+    width: 50%;
+  }
+  
+  .main .left {
+    background:goldenrod;
+    background-size: cover;
+    display: flex;
+  }
+  
+  .main .left .items-wrapper {
+    color: #fff;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .main .left .items-wrapper .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: auto;
+    width: auto;
+    margin-left: auto;
     margin-right: auto;
-    position: relative;
-}
+    margin-bottom: 50px;
+  }
+  
+  .main .left .items-wrapper .item .label {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+ 
+  
+  .main .center .btn-sign-up {
+    display: block;
+    margin-bottom: 50%;
+    background-color: goldenrod;
+    border: 1px solid grey;
+    color: #fff;
+    border-radius: 100%;
+    padding: 6% 16%;
+    text-align: center;
+    margin-top: 15%;
+  }
+.btn-login{
+    display: block;
+    margin-bottom: 50%;
+    background-color:indigo;
+    border: 1px solid grey;
+    color: #fff;
+    border-radius: 100%;
+    padding: 6% 16%;
+    text-align: center;
+    margin-top: 15%;
 
-.main .center  {
+}
+  
+  
+  .main .left .items-wrapper .icon {
+    font-size: 25%;
+    margin-right: 15%;
+  }
+  
+
+.center{
     display:block;
-    width:auto;
-    text-align:center;
+    margin-top:50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: 50%;
 }
-
-
-
 
