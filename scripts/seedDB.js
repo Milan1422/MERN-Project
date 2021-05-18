@@ -11,6 +11,7 @@ mongoose.connect(
 const userSeed = [
   {
     email: "jesusm@email.com",
+    username: "rebel",
     password: "password123",
     skill: "Javascript",
     location: "Kennesaw",
@@ -18,6 +19,7 @@ const userSeed = [
   },
   {
     email: "lees@email.com",
+    username: "sheriff",
     password: "password123",
     skill: "HTML",
     location: "Lithonia",
@@ -25,6 +27,7 @@ const userSeed = [
   },
   {
     email: "anthonyd@email.com",
+    username: "bandit",
     password: "password123",
     skill: "CSS",
     location: "Duluth",
@@ -32,6 +35,7 @@ const userSeed = [
   },
   {
     email: "eimanz@email.com",
+    username: "outlaw",
     password: "password123",
     skill: "Javascript",
     location: "Atlanta",
