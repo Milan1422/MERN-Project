@@ -1,11 +1,12 @@
 import React from "react";
 import "./loginpage.css"
 import {Goldenrod } from "../../utils/colors";
+import logo from "../../Style/assets/logo.png"
 
 function LoginPage() {
   return (
     <div>
-      <h1 className = "logintitle">Credentials</h1>
+      <h1 className ="logintitle">Credentials</h1>
       <form>
         <div className="form-group">
           <label>Email or Username</label>
@@ -23,6 +24,7 @@ function LoginPage() {
         <button style = {{background: Goldenrod}} className="btn rounded pill mt-2">
           npm start
         </button>
+        <img src={logo} className= "codemonkey" alt="logo" style={{ width:"375px" }} />
       </form>
     </div>
   );
