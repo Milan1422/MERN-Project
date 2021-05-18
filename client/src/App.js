@@ -1,10 +1,11 @@
 // react components
 import React from "react";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // local components
 import "./App.css";
 import Landing from "./pages/Landing/landing";
-import SignupPage from "./pages/SingupPage/signupPage";
+import SignupPage from "./pages/SingupPage/SignUpPage";
 import LoginPage from "./pages/LoginPage/loginpage";
 
 function App() {
