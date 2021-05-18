@@ -17,15 +17,20 @@ form {
     margin: auto;
     background-color:#843B62;
     width: 80%;
-    height: 400px;
+    height: 420px;
     border-radius: 15px 15px 50px 50px;
 }
 
 button {
     height:40px; 
     width:100px; 
-    position:absolute;
+    position: absolute;
     left:32.5%;
+}
+
+.codemonkey {
+position:fixed;
+right: 0%
 }
 
 .form-group, .form-control {
