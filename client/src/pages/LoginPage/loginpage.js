@@ -1,12 +1,15 @@
 import React from "react";
+import "./loginpage.css"
+import {Goldenrod } from "../../utils/colors";
+import logo from "../../Style/assets/logo.png"
 
 function LoginPage() {
   return (
     <div>
-      <h1>Sign in</h1>
+      <h1 className ="logintitle">Credentials</h1>
       <form>
         <div className="form-group">
-          <label>Email address</label>
+          <label>Email or Username</label>
           <input
             type="email"
             className="form-control"
@@ -18,7 +21,10 @@ function LoginPage() {
           <label>Password</label>
           <input type="password" className="form-control" id="login-password" />
         </div>
-        <button className="btn btn-primary">Login</button>
+        <button style = {{background: Goldenrod}} className="btn rounded pill mt-2">
+          npm start
+        </button>
+        <img src={logo} className= "codemonkey" alt="logo" style={{ width:"375px" }} />
       </form>
     </div>
   );

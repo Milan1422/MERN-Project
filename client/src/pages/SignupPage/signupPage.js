@@ -1,7 +1,7 @@
 import React from "react";
 import useForm from "../../pages/SingupPage/useForm";
 
-const FormSignup = ({submitForm}) => {
+const FormSignup = () => {
   const { handleChange, values, handleSubmit } = useForm();
 
   return (

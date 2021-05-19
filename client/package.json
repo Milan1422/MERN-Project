@@ -8,7 +8,11 @@
     "bootstrap": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+<<<<<<< HEAD
     "react-hook-form": "^7.6.2",
+=======
+    "react-icons": "^4.2.0",
+>>>>>>> 92ce96d11f0a96bda0ba537aed94e9c9933dbd2f
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3"
   },

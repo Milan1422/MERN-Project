@@ -10,35 +10,43 @@ mongoose.connect(
 
 const userSeed = [
   {
+    username: "Jesus Milan",
     email: "jesusm@email.com",
     username: "rebel",
     password: "password123",
     skill: "Javascript",
     location: "Kennesaw",
+    image: "https://randomuser.me/api/portraits/lego/6.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Lee Spaulding",
     email: "lees@email.com",
     username: "sheriff",
     password: "password123",
     skill: "HTML",
     location: "Lithonia",
+    image: "https://randomuser.me/api/portraits/lego/0.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Anthony Dominguez",
     email: "anthonyd@email.com",
     username: "bandit",
     password: "password123",
     skill: "CSS",
     location: "Duluth",
+    image: "https://randomuser.me/api/portraits/lego/8.jpg",
     date: new Date(Date.now())
   },
   {
+    username: "Eiman Zarrinhonar",
     email: "eimanz@email.com",
     username: "outlaw",
     password: "password123",
     skill: "Javascript",
     location: "Atlanta",
+    image: "https://randomuser.me/api/portraits/lego/5.jpg",
     date: new Date(Date.now())
   },
 ];
