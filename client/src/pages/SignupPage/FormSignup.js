@@ -1,5 +1,5 @@
 import React from "react";
-import useForm from "../../pages/SingupPage/useForm";
+import useForm from "../../pages/SignupPage/useForm";
 
 const FormSignup = ({ submitForm }) => {
   const { handleChange, values, handleSubmit } = useForm();
@@ -69,19 +69,20 @@ const FormSignup = ({ submitForm }) => {
         </div>
 
         <div className="form-inputs">
-          <label htmlFor="Location" className="form-label">
+          <label htmlFor="Skill" className="form-label">
             Location
           </label>
           <input
             type="text"
-            name="Location"
+            name="location"
             id="location"
             className="form-input"
-            placeholder="What city are you in?"
+            placeholder="List your coding skills!"
             value={values.location}
             onChange={handleChange}
           />
         </div>
+
         <button className="form-input-btn btn-primary" type="submit">
           Sign Up
         </button>
