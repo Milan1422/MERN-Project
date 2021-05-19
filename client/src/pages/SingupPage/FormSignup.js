@@ -1,26 +1,23 @@
 import React from "react";
-import useForm from "./useForm";
+import useForm from "../../pages/SingupPage/useForm";
 
-const SignUpPage = () => {
+const FormSignup = () => {
   const { handleChange, values, handleSubmit } = useForm();
-  console.log(values.email);
-  console.log(values.username);
+
   return (
-    <div className="form-content-center">
+    <div className="form-content-right">
       <form className="form" onSubmit={handleSubmit}>
-        <h1>Create Account</h1>
+        <h1> Sign Up!</h1>
         <div className="form-inputs">
           <label htmlFor="email" className="form-label">
             Email
           </label>
           <input
             type="email"
-            className="form-control"
             name="email"
             id="email"
-            placeholder="Please enter your email address"
-            aria-describedby="emailHelp"
-            required
+            className="form-input"
+            placeholder="Enter your email"
             value={values.email}
             onChange={handleChange}
           />
@@ -28,15 +25,14 @@ const SignUpPage = () => {
 
         <div className="form-inputs">
           <label htmlFor="username" className="form-label">
-            username
+            Username
           </label>
           <input
-            type="username"
-            className="form-control"
+            type="text"
             name="username"
             id="username"
-            placeholder="Enter your username"
-            required
+            className="form-input"
+            placeholder="Create a Username"
             value={values.username}
             onChange={handleChange}
           />
@@ -44,59 +40,49 @@ const SignUpPage = () => {
 
         <div className="form-inputs">
           <label htmlFor="password" className="form-label">
-            password
+            Password
           </label>
           <input
             type="password"
-            className="form-control"
             name="password"
             id="password"
-            placeholder="Create a unique password"
-            required
+            className="form-input"
+            placeholder="Create a unique Password"
             value={values.password}
             onChange={handleChange}
           />
         </div>
 
         <div className="form-inputs">
-          <label htmlFor="skill" className="form-label">
+          <label htmlFor="Skill" className="form-label">
             Skill
           </label>
           <input
-            type="input"
-            className="form-control"
+            type="text"
             name="skill"
             id="skill"
-            placeholder="What are your coding skills?"
-            aria-describedby="emailHelp"
-            required
+            className="form-input"
+            placeholder="List your coding skills!"
             value={values.skill}
             onChange={handleChange}
           />
         </div>
 
         <div className="form-inputs">
-          <label htmlFor="location" className="form-label">
+          <label htmlFor="Location" className="form-label">
             Location
           </label>
           <input
-            type="location"
-            className="form-control"
-            name="location"
+            type="text"
+            name="Location"
             id="location"
-            placeholder="What city are you located in?"
-            aria-describedby="emailHelp"
-            required
+            className="form-input"
+            placeholder="What city are you in?"
             value={values.location}
             onChange={handleChange}
           />
         </div>
-
-        <button
-          className="form-input-button btn btn-primary rounded-pill"
-          onSubmit={handleSubmit}
-          type="submit"
-        >
+        <button className="form-input-btn btn-primary" type="submit">
           Sign Up
         </button>
         <span className="form-input-login">
@@ -107,4 +93,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default FormSignup;

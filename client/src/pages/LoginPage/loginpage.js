@@ -18,9 +18,7 @@ function LoginPage() {
           <label>Password</label>
           <input type="password" className="form-control" id="login-password" />
         </div>
-        <button className="btn btn-primary">
-          Login
-        </button>
+        <button className="btn btn-primary">Login</button>
       </form>
     </div>
   );
