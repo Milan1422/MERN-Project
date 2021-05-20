@@ -37,7 +37,7 @@ export const isAuth = () => (dispatch) => {
 
 //SignUp New User
 export const register =
-  ({ name, email, password }) =>
+  ({ username, email, password, skill, location }) =>
   (dispatch) => {
     // Headers
     const headers = {
@@ -47,7 +47,7 @@ export const register =
     };
 
     // Request body
-    const body = JSON.stringify({ name, email, password });
+    const body = JSON.stringify({ username, email, password, skill, location });
 
     axios
       .post("/api/users/register", body, headers)

@@ -18,7 +18,13 @@ exports.isAuth = (req, res, next) => {
 exports.registerUser = (req, res) => {
   const { name, email, password } = req.body;
 
-  const result = registerSchema.validate({ name, email, password });
+  const result = registerSchema.validate({
+    username,
+    email,
+    password,
+    skill,
+    location,
+  });
   if (!result.error) {
     // Check for existing user
     User.findOne({ email: email }).then((user) => {
@@ -26,9 +32,11 @@ exports.registerUser = (req, res) => {
 
       //New User created
       const newUser = new User({
-        name,
         email,
+        username,
         password,
+        skill,
+        location,
       });
 
       //Password hash
