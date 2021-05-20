@@ -12,7 +12,7 @@ import {
   Alert,
   Spinner,
 } from "reactstrap";
-import React, { Component } from "react";
+
 import { connect } from "react-redux"; // API to connect component state to redux store
 import PropTypes from "prop-types";
 import { buttonClicked, isLoading } from "../../actions/frontEndActions";

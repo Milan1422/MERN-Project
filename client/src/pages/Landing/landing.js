@@ -1,120 +1,92 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Title from "../../components/AppTitle/appTitle";
-import SignupBtn from "../../components/SignUp/signupButton";
-import LoginBtn from "../../components/LogIn/loginButton";
-import logo from "../../Style/assets/logo.png";
+import React, { Component } from "react";
+
 import "../Landing/landing.css";
-import { getFromStorage, setInStorage } from "../../utils/userValidation";
 
-class Landing extends Component {
-  constructor(props) {
-    super(props);
+import Login from "../LoginPage/login";
+import Register from "../SignupPage/Register";
+import { connect } from "react-redux";
+import { Redirect, Route, Switch, Link } from "react-router-dom";
+import { Button } from "reactstrap";
+import PropTypes from "prop-types";
+import { buttonClicked } from "../../actions/frontEndActions";
 
-    this.state = {
-      isLoading: true,
-      token: "",
-      signUpError: "",
-      signInError: "",
-      signInEmail: "",
-      signInPassword: "",
-      signInUsername: "",
-    };
-  }
+import store from "../../store";
+import { isAuth } from "../../actions/authActions";
 
+var divStyle = {
+  color: "white",
+};
+
+export class Landing extends Component {
   componentDidMount() {
-    const token = getFromStorage("the_main_app");
-    if (token) {
-      fetch("/api/verify?token=" + token)
-        .then((res) => res.json())
-        .then((json) => {
-          if (json.success) {
-            this.setState({
-              token,
-              isLoading: false,
-            });
-          } else {
-            this.setState({
-              isLoading: false,
-            });
-          }
-        });
-    } else {
-      this.setState({
-        isLoading: false,
-      });
-    }
+    // Check if session cookie is present
+    store.dispatch(isAuth());
   }
+
+  static propTypes = {
+    button: PropTypes.bool,
+    isAuthenticated: PropTypes.bool,
+  };
 
   render() {
-    const {
-      isLoading,
-      token,
-      signInEmail,
-      signInPassword,
-      signInUsername,
-      signInError,
-    } = this.state;
-    if (isLoading) {
-      return (
-        <div>
-          <p>Loading...</p>
-        </div>
-      );
-    }
-    if (!token) {
-      return (
-        <div>
-          <p>Sign In</p>
-          <p>Sign Up</p>
-        </div>
-      );
+    if (this.props.isAuthenticated) {
+      return <Redirect to="/profile" />;
     }
 
     return (
-      <div classs="container-fluid">
+      <div className="container">
         <div className="main">
-          <div className="wrapper">
-            <div className="left">
-              <div className="items-wrapper">
-                <div className="item">
-                  <span className="icon">
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                  </span>
-                  <span className="label">Follow your interests.</span>
-                </div>
-                <div className="item">
-                  <span className="icon">
-                    <i className="fa fa-user" aria-hidden="true"></i>
-                  </span>
-                  <span className="label">
-                    Hear what people are talking about.
-                  </span>
-                </div>
-                <div className="item">
-                  <span className="icon">
-                    <i className="fa fa-comment" aria-hidden="true"></i>
-                  </span>
-                  <span className="label">Join the conversation.</span>
-                </div>
-              </div>
-            </div>
-            <div className="center">
-              <img src={logo} alt="logo" style={{ width: "200px" }} />
+          <h1 style={divStyle}>
+            {" "}
+            <strong>MERN</strong> Sessions Auth App{" "}
+          </h1>
+          <br />
+          <h5 style={divStyle}>
+            Minimalistic Sessions based Authentication app{" "}
+            <span role="img" aria-label="lock">
+              🔒{" "}
+            </span>
+            <br></br>Built with React + Redux, NodeJS, Express, MongoDB and
+            Bootstrap
+          </h5>
+          <h5 style={divStyle}>
+            Uses Cookies{" "}
+            <span role="img" aria-label="lock">
+              🍪{" "}
+            </span>
+          </h5>
+          <br />
+          <div>
+            <Switch>
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Register} />
+            </Switch>
 
-              <span>Join The Family Today.</span>
-              <Link to="/signup" className="btn-sign-up">
-                Sign up
+            {this.props.button && (
+              <Link className="divStyle" to="/login">
+                <Button size="lg" color="light">
+                  Sign In
+                </Button>
               </Link>
-              <Link to="/login" className="btn-login">
-                Log in
+            )}
+
+            {this.props.button && (
+              <Link className="divStyle" to="/register">
+                <Button size="lg" color="light">
+                  Register
+                </Button>
               </Link>
-            </div>
+            )}
           </div>
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  //Maps state to redux store as props
+  button: state.ui.button,
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
-export default Landing;
+export default connect(mapStateToProps)(Landing);
