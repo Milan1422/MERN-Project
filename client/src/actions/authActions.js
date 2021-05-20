@@ -13,7 +13,7 @@ import {
 } from "./types";
 
 //Uncomment below for local testing
-// axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "http://localhost:5000";
 
 //uncomment and set url to your own for prod
 //axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
@@ -35,7 +35,7 @@ export const isAuth = () => (dispatch) => {
     });
 };
 
-//Register New User
+//SignUp New User
 export const register =
   ({ name, email, password }) =>
   (dispatch) => {
