@@ -31,7 +31,7 @@ exports.registerUser = (req, res) => {
         password,
       });
 
-      //Password hashing
+      //Password hash
       bcrypt.genSalt(12, (err, salt) =>
         bcrypt.hash(newUser.password, salt, (err, hash) => {
           if (err) throw err;
