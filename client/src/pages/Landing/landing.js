@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 
 import "../Landing/landing.css";
-
+import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 import Login from "../LoginPage/login";
-import Register from "../SignupPage/Register";
+import Signup from "../SignupPage/Signup";
 import { connect } from "react-redux";
-import { Redirect, Route, Switch, Link } from "react-router-dom";
+
 import { Button } from "reactstrap";
 import PropTypes from "prop-types";
-import { buttonClicked } from "../../actions/frontEndActions";
 
 import store from "../../store";
 import { isAuth } from "../../actions/authActions";
@@ -33,11 +32,12 @@ export class Landing extends Component {
       <div className="container">
         <div className="main">
           <div>
-            <Switch>
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Register} />
-            </Switch>
-
+            <BrowserRouter>
+              <Switch>
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/signup" component={Signup} />
+              </Switch>
+            </BrowserRouter>
             {this.props.button && (
               <Link className="divStyle" to="/login">
                 <Button size="lg" color="light">

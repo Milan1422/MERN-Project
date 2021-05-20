@@ -1,14 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const {
-  registerUser,
+  signupUser,
   loginUser,
   logoutUser,
   authChecker,
-} = require("../controllers/AuthController");
+} = require("../../controllers/usersController");
 
-// Registers a new User
-router.post("/register", registerUser);
+const {
+  signupUser,
+  loginUser,
+  logoutUser,
+  authChecker,
+} = require("../../controllers/usersController");
+
+router.post("/signup", signupUser);
 
 // Logs In a User, creates session in mongo store
 // and returns a cookie containing sessionID, also called "session-id"

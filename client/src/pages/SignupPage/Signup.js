@@ -19,7 +19,7 @@ import { buttonClicked, isLoading } from "../../actions/frontEndActions";
 import { Link } from "react-router-dom";
 import { register } from "../../actions/authActions";
 
-class Register extends Component {
+class Signup extends Component {
   state = {
     email: "",
     username: "",
@@ -36,9 +36,6 @@ class Register extends Component {
     status: PropTypes.object.isRequired,
     loading: PropTypes.bool,
   };
-
-  // Removes sign in and register buttons from homepage
-  // upon mounting of Register component
   componentDidMount() {
     this.props.buttonClicked();
   }
@@ -72,9 +69,9 @@ class Register extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, password } = this.state;
+    const { username, email, password, skill, location } = this.state;
 
-    const user = { name, email, password };
+    const user = { username, email, password, skill, location };
     this.props.isLoading();
     this.props.register(user);
   };
@@ -115,7 +112,7 @@ class Register extends Component {
             {alert}
             <Form onSubmit={this.onSubmit}>
               <FormGroup className="text-center">
-                <Label for="username">Name</Label>
+                <Label for="username">Username</Label>
                 <Input
                   type="text"
                   name="username"
@@ -148,23 +145,23 @@ class Register extends Component {
                   onChange={this.onChange}
                 />
 
-                <Label for="skill">Password</Label>
+                <Label for="skill">List your Skills</Label>
                 <Input
                   type="text"
                   name="skill"
                   id="skill"
-                  placeholder="Enter your Password"
+                  placeholder="Skills"
                   className="mb-3"
                   size="lg"
                   onChange={this.onChange}
                 />
 
-                <Label for="location">Password</Label>
+                <Label for="location">What is your location?</Label>
                 <Input
                   type="text"
                   name="location"
                   id="location"
-                  placeholder="Enter your Password"
+                  placeholder="Location"
                   className="mb-3"
                   size="lg"
                   onChange={this.onChange}
@@ -195,5 +192,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { register, isLoading, buttonClicked })(
-  Register
+  Signup
 );

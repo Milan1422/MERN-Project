@@ -1,7 +1,10 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/User"); // User model
 const Joi = require("@hapi/joi");
-const { registerSchema, loginSchema } = require("../utils/userValidations");
+const {
+  registerSchema,
+  loginSchema,
+} = require("../client/src/utils/userValidation");
 
 exports.isAuth = (req, res, next) => {
   const sessUser = req.session.user;
@@ -16,7 +19,7 @@ exports.isAuth = (req, res, next) => {
 };
 
 exports.registerUser = (req, res) => {
-  const { name, email, password } = req.body;
+  const { username, email, password } = req.body;
 
   const result = registerSchema.validate({
     username,

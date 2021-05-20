@@ -59,9 +59,9 @@ class Login extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password } = this.state;
+    const { username, password } = this.state;
 
-    const user = { email, password };
+    const user = { username, password };
     this.props.isLoading();
     this.props.login(user);
   };
@@ -83,7 +83,7 @@ class Login extends Component {
             </CardTitle>
             <CardSubtitle className="text-muted">
               Don't have an account?
-              <Link to="/register"> Register. </Link>
+              <Link to="/signup"> Register. </Link>
             </CardSubtitle>
             <br />
             {this.state.msg ? (
@@ -91,11 +91,11 @@ class Login extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="email">E-mail</Label>
+                <Label for="username">Username</Label>
                 <Input
-                  type="email"
-                  name="email"
-                  id="email"
+                  type="text"
+                  name="username"
+                  id="username"
                   size="lg"
                   placeholder="you@youremail.com"
                   className="mb-3"

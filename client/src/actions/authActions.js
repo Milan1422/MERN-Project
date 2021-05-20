@@ -1,116 +1,58 @@
 import axios from "axios";
-import { returnStatus } from "./statusActions";
+import setAuthToken from "../utils/setAuthToken";
+import jwt_decode from "jwt-decode";
 
-import {
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  AUTH_SUCCESS,
-  AUTH_FAIL,
-  LOGOUT_SUCCESS,
-  IS_LOADING,
-} from "./types";
+import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
-//Uncomment below for local testing
-axios.defaults.baseURL = "http://localhost:5000";
-
-//uncomment and set url to your own for prod
-//axios.defaults.baseURL = "https://demos.shawndsilva.com/sessions-auth-app"
-
-//Check if user is already logged in
-export const isAuth = () => (dispatch) => {
+//Register User
+export const registerUser = (userData, history) => (dispatch) => {
   axios
-    .get("/api/users/authchecker", { withCredentials: true })
-    .then((res) =>
+    .post("/api/users/signup", userData)
+    .then((res) => history.push("/login"))
+    .catch((err) =>
       dispatch({
-        type: AUTH_SUCCESS,
-        payload: res.data,
+        type: GET_ERRORS,
+        payload: err.response.data,
       })
-    )
-    .catch((err) => {
-      dispatch({
-        type: AUTH_FAIL,
-      });
-    });
+    );
 };
 
-//SignUp New User
-export const register =
-  ({ username, email, password, skill, location }) =>
-  (dispatch) => {
-    // Headers
-    const headers = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    // Request body
-    const body = JSON.stringify({ username, email, password, skill, location });
-
-    axios
-      .post("/api/users/register", body, headers)
-      .then((res) => {
-        dispatch(returnStatus(res.data, res.status, "REGISTER_SUCCESS"));
-        dispatch({ type: IS_LOADING });
-      })
-      .catch((err) => {
-        dispatch(
-          returnStatus(err.response.data, err.response.status, "REGISTER_FAIL")
-        );
-        dispatch({
-          type: REGISTER_FAIL,
-        });
-        dispatch({ type: IS_LOADING });
-      });
-  };
-
-//Login User
-export const login =
-  ({ email, password }) =>
-  (dispatch) => {
-    // Headers
-    const headers = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    // Request body
-    const body = JSON.stringify({ email, password });
-
-    axios
-      .post("/api/users/login", body, headers)
-      .then((res) => {
-        console.log(res);
-        dispatch({
-          type: LOGIN_SUCCESS,
-          payload: res.data,
-        });
-        dispatch({ type: IS_LOADING });
-      })
-      .catch((err) => {
-        dispatch(
-          returnStatus(err.response.data, err.response.status, "LOGIN_FAIL")
-        );
-        dispatch({
-          type: LOGIN_FAIL,
-        });
-        dispatch({ type: IS_LOADING });
-      });
-  };
-
-//Logout User and Destroy session
-export const logout = () => (dispatch) => {
+//Login
+export const loginUser = (userData) => (dispatch) => {
   axios
-    .delete("/api/users/logout", { withCredentials: true })
-    .then((res) =>
+    .post("/api/users/login", userData)
+    .then((res) => {
+      const { token } = res.data;
+      // Set token to localStorage
+      localStorage.setItem("jwtToken", token);
+      // Set token to Auth header
+      setAuthToken(token);
+      const decoded = jwt_decode(token);
+      // Set current user
+      dispatch(setCurrentUser(decoded));
+    })
+    .catch((err) =>
       dispatch({
-        type: LOGOUT_SUCCESS,
+        type: GET_ERRORS,
+        payload: err.response.data,
       })
-    )
-    .catch((err) => {
-      console.log(err);
-    });
+    );
+};
+
+// Set logged in user
+export const setCurrentUser = (decoded_data) => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded_data,
+  };
+};
+
+// Logout user
+export const logoutUser = () => (dispatch) => {
+  // Remove token from local storage
+  localStorage.removeItem("jwtToken");
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to empty object {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
 };

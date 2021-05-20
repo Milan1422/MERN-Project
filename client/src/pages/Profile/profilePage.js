@@ -1,5 +1,3 @@
-import API from "../../utils/API";
-import Navbar from "../../components/NavBar/Navbar";
 import "../Profile/profilePage.css";
 
 import React, { Component } from "react";
