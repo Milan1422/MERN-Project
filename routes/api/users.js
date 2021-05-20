@@ -1,16 +1,21 @@
-const router = require("express").Router();
-const usersController = require("../../controllers/usersController");
+const express = require("express");
+const router = express.Router();
+const {
+  registerUser,
+  loginUser,
+  logoutUser,
+  authChecker,
+} = require("../controllers/AuthController");
 
-// Matches with "/api/users"
-router.route("/")
-  .get(usersController.findAll)
-  .post(usersController.create);
+// Registers a new User
+router.post("/register", registerUser);
 
-// Matches with "/api/users/:id"
-router
-  .route("/:id")
-  .get(usersController.findById)
-  .put(usersController.update)
-  .delete(usersController.remove);
+// Logs In a User, creates session in mongo store
+// and returns a cookie containing sessionID, also called "session-id"
+router.post("/login", loginUser);
+
+router.delete("/logout", logoutUser);
+
+router.get("/authchecker", authChecker);
 
 module.exports = router;

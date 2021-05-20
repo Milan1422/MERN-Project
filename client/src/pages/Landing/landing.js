@@ -5,7 +5,7 @@ import SignupBtn from "../../components/SignUp/signupButton";
 import LoginBtn from "../../components/LogIn/loginButton";
 import logo from "../../Style/assets/logo.png";
 import "../Landing/landing.css";
-import { getFromStorage, setInStorage } from "../../utils/storage";
+import { getFromStorage, setInStorage } from "../../utils/userValidation";
 
 class Landing extends Component {
   constructor(props) {
