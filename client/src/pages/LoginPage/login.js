@@ -1,149 +1,114 @@
-import "./loginpage.css";
-import { Goldenrod } from "../../utils/colors";
-import logo from "../../Style/assets/logo.png";
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Card,
-  CardTitle,
-  CardSubtitle,
-  CardBody,
-  Alert,
-  Spinner,
-} from "reactstrap";
-import { connect } from "react-redux"; // API to connect component state to redux store
-import PropTypes from "prop-types";
-import { buttonClicked, isLoading } from "../../actions/frontEndActions";
-import { login } from "../../actions/authActions";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 class Login extends Component {
-  state = {
-    email: "",
-    password: "",
-    msg: "",
-  };
-
-  static propTypes = {
-    buttonClicked: PropTypes.func.isRequired,
-    isLoading: PropTypes.func.isRequired,
-    button: PropTypes.bool,
-    login: PropTypes.func.isRequired,
-    isAuthenticated: PropTypes.bool,
-    status: PropTypes.object.isRequired,
-    loading: PropTypes.bool,
-  };
-
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      errors: {},
+    };
+  }
   componentDidMount() {
-    this.props.buttonClicked();
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
-  componentDidUpdate(prevProps) {
-    const status = this.props.status;
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
 
-    if (status !== prevProps.status) {
-      if (status.id === "LOGIN_FAIL") {
-        this.setState({ msg: status.statusMsg });
-      }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
     }
   }
 
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value });
   };
 
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { username, password } = this.state;
-
-    const user = { username, password };
-    this.props.isLoading();
-    this.props.login(user);
+    const userData = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.loginUser(userData);
   };
-
   render() {
-    let className = "divStyle";
-    if (!this.props.button) {
-      className = "formStyle";
-    }
+    const { email, password, errors } = this.state;
     return (
-      <div className={className}>
-        <Card>
-          <CardBody>
-            <CardTitle>
-              {" "}
-              <h2>
-                <strong>Login</strong>
-              </h2>
-            </CardTitle>
-            <CardSubtitle className="text-muted">
-              Don't have an account?
-              <Link to="/signup"> Register. </Link>
-            </CardSubtitle>
-            <br />
-            {this.state.msg ? (
-              <Alert color="danger">{this.state.msg}</Alert>
-            ) : null}
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup>
-                <Label for="username">Username</Label>
-                <Input
-                  type="text"
-                  name="username"
-                  id="username"
-                  size="lg"
-                  placeholder="you@youremail.com"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
-
-                <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  size="lg"
-                  placeholder="Enter your Password"
-                  className="mb-3"
-                  onChange={this.onChange}
-                />
-                <Button
-                  size="lg"
-                  color="dark"
-                  style={{ marginTop: "2rem" }}
-                  block
-                >
-                  {this.props.loading ? (
-                    <span>
-                      Logging in.. <Spinner size="sm" color="light" />
-                    </span>
-                  ) : (
-                    <span>Login</span>
-                  )}
-                </Button>
-              </FormGroup>
-            </Form>
-          </CardBody>
-        </Card>
+      <div className="form-box">
+        <form className="login-form" onSubmit={this.onSubmit}>
+          <h2>Login</h2>
+          <hr />
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              value={email}
+              error={errors}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.email || errors.emailnotfound,
+              })}
+            />
+            <span className="red-text">
+              {errors.email}
+              {errors.emailnotfound}
+            </span>
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              error={errors}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.password || errors.passwordincorrect,
+              })}
+            />
+            <span className="red-text">
+              {errors.password}
+              {errors.passwordincorrect}
+            </span>
+          </div>
+          <div className="form-group">
+            <button type="submit" className="btn btn-primary btn-block btn-lg">
+              Login
+            </button>
+          </div>
+          <div className="text-center">
+            Don't have an account? <Link to="/register">Register</Link>
+          </div>
+        </form>
       </div>
     );
   }
 }
 
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  //Maps state element in redux store to props
-  //location of element in the state is on the right and key is on the left
-  button: state.ui.button, //store.getState().ui.button another way to get button bool
-  isAuthenticated: state.auth.isAuthenticated,
-  status: state.status,
-  loading: state.ui.loading,
+  auth: state.auth,
+  errors: state.errors,
 });
 
-export default connect(mapStateToProps, { login, isLoading, buttonClicked })(
-  Login
-);
+export default connect(mapStateToProps, { loginUser })(Login);

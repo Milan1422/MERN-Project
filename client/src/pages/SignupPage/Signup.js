@@ -1,196 +1,163 @@
 import React, { Component } from "react";
-import {
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Card,
-  CardTitle,
-  CardSubtitle,
-  CardBody,
-  Alert,
-  Spinner,
-} from "reactstrap";
-
-import { connect } from "react-redux"; // API to connect component state to redux store
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import { buttonClicked, isLoading } from "../../actions/frontEndActions";
-import { Link } from "react-router-dom";
-import { register } from "../../actions/authActions";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
 
-class Signup extends Component {
-  state = {
-    email: "",
-    username: "",
-    password: "",
-    skills: "",
-    location: "",
-    msg: "",
-  };
-
-  static propTypes = {
-    buttonClicked: PropTypes.func.isRequired,
-    button: PropTypes.bool,
-    register: PropTypes.func.isRequired,
-    status: PropTypes.object.isRequired,
-    loading: PropTypes.bool,
-  };
+class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      email: "",
+      skill: "",
+      location: "",
+      errors: {},
+    };
+  }
   componentDidMount() {
-    this.props.buttonClicked();
-  }
-
-  componentDidUpdate(prevProps) {
-    const status = this.props.status;
-
-    // Changes status message if it is different from previous message
-    if (status !== prevProps.status) {
-      if (status.id === "REGISTER_FAIL") {
-        this.setState({ msg: status.statusMsg });
-      } else {
-        this.setState({ msg: this.props.status.statusMsg });
-      }
-    }
-
-    // Redirects to Log In screen after a delay of 2secs if successfully registered
-    if (status.id === "REGISTER_SUCCESS") {
-      setTimeout(() => {
-        this.props.history.push("/login");
-      }, 2000);
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/profile");
     }
   }
 
-  // Sets the value of the input fields to the state items of the same name
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors,
+      });
+    }
+  }
+
   onChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.id]: e.target.value });
   };
 
-  // Calls action to register user
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { username, email, password, skill, location } = this.state;
+    const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+      skill: this.state.skill,
+      location: this.state.location,
+    };
 
-    const user = { username, email, password, skill, location };
-    this.props.isLoading();
-    this.props.register(user);
+    this.props.registerUser(newUser, this.props.history);
   };
 
   render() {
-    let className = "divStyle";
+    const { name, email, password, skill, location, errors } = this.state;
 
-    // If HTTP 400 error, render alert with red color, else if
-    // it is 200 OK, render alert in green
-    let alert;
-    if (this.state.msg && this.props.status.respCode >= 400) {
-      alert = <Alert color="danger">{this.state.msg}</Alert>;
-    } else if (this.state.msg && this.props.status.respCode === 200) {
-      alert = (
-        <Alert color="success">
-          {this.state.msg} <br /> Redirecting to Log In screen
-        </Alert>
-      );
-    }
-
-    if (!this.props.button) {
-      className = "formStyle";
-    }
     return (
-      <div className={className}>
-        <Card>
-          <CardBody>
-            <CardTitle>
-              <h2>
-                <strong>Sign Up</strong>
-              </h2>
-            </CardTitle>
-            <CardSubtitle className="text-muted">
-              Already have an account?
-              <Link to="/login"> Log In. </Link>
-            </CardSubtitle>
-            <br />
-            {alert}
-            <Form onSubmit={this.onSubmit}>
-              <FormGroup className="text-center">
-                <Label for="username">Username</Label>
-                <Input
-                  type="text"
-                  name="username"
-                  id="username"
-                  placeholder="Enter your name"
-                  className="mb-3"
-                  size="lg"
-                  onChange={this.onChange}
-                />
+      <div className="form-box ">
+        <form className="signup-form" onSubmit={this.onSubmit}>
+          <div>
+            <Link to="/">
+              <i className="fa fa-arrow-circle-left  "></i> Back to Home
+            </Link>
+          </div>
 
-                <Label for="email">E-mail</Label>
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="you@youremail.com"
-                  className="mb-3"
-                  size="lg"
-                  onChange={this.onChange}
-                />
+          <h2>Sign Up</h2>
+          <hr />
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              placeholder="Name"
+              value={name}
+              error={errors.name}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.name,
+              })}
+            />
+            <span className="red-text">{errors.name}</span>
+          </div>
 
-                <Label for="password">Password</Label>
-                <Input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Enter your Password"
-                  className="mb-3"
-                  size="lg"
-                  onChange={this.onChange}
-                />
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email Address"
+              value={email}
+              error={errors.email}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.email,
+              })}
+            />
+            <span className="red-text">{errors.email}</span>
+          </div>
 
-                <Label for="skill">List your Skills</Label>
-                <Input
-                  type="text"
-                  name="skill"
-                  id="skill"
-                  placeholder="Skills"
-                  className="mb-3"
-                  size="lg"
-                  onChange={this.onChange}
-                />
+          <div className="form-group">
+            <input
+              type="password"
+              id="password"
+              placeholder="Password"
+              value={password}
+              error={errors.password}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.password,
+              })}
+            />
+            <span className="red-text">{errors.password}</span>
+          </div>
 
-                <Label for="location">What is your location?</Label>
-                <Input
-                  type="text"
-                  name="location"
-                  id="location"
-                  placeholder="Location"
-                  className="mb-3"
-                  size="lg"
-                  onChange={this.onChange}
-                />
-                <Button color="dark" className="mt-5" size="lg" block>
-                  {this.props.loading ? (
-                    <span>
-                      Registering.. <Spinner size="sm" color="light" />
-                    </span>
-                  ) : (
-                    <span>Sign Up</span>
-                  )}
-                </Button>
-              </FormGroup>
-            </Form>
-          </CardBody>
-        </Card>
+          <div className="form-group">
+            <input
+              type="text"
+              id="skill"
+              placeholder="Confirm Password"
+              value={skill}
+              error={errors.skill}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.skill,
+              })}
+            />
+          </div>
+
+          <div className="form-group">
+            <input
+              type="text"
+              id="location"
+              placeholder="What city are you from?"
+              value={location}
+              error={errors.location}
+              onChange={this.onChange}
+              className={classnames("form-control", {
+                invalid: errors.location,
+              })}
+            />
+          </div>
+
+          <div className="form-group">
+            <button type="submit" className="btn btn-primary btn-block btn-lg">
+              Sign Up
+            </button>
+          </div>
+          <div className="text-center">
+            Already have an account? <Link to="/login">Login here</Link>
+          </div>
+        </form>
       </div>
     );
   }
 }
 
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  //Maps state to redux store as props
-  button: state.ui.button,
-  status: state.status,
-  loading: state.ui.loading,
+  auth: state.auth,
+  errors: state.errors,
 });
 
-export default connect(mapStateToProps, { register, isLoading, buttonClicked })(
-  Signup
-);
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
