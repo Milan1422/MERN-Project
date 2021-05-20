@@ -8,6 +8,8 @@ import Landing from "./pages/Landing/landing";
 import FormSignup from "./pages/SignupPage/FormSignup";
 import LoginPage from "./pages/LoginPage/loginpage";
 import Profile from "./pages/Profile/profilePage";
+import { Provider } from "react-redux";
+import store from "../src/store";
 
 function App() {
   return (
