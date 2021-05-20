@@ -13,10 +13,6 @@ import { buttonClicked } from "../../actions/frontEndActions";
 import store from "../../store";
 import { isAuth } from "../../actions/authActions";
 
-var divStyle = {
-  color: "white",
-};
-
 export class Landing extends Component {
   componentDidMount() {
     // Check if session cookie is present
@@ -36,26 +32,6 @@ export class Landing extends Component {
     return (
       <div className="container">
         <div className="main">
-          <h1 style={divStyle}>
-            {" "}
-            <strong>MERN</strong> Sessions Auth App{" "}
-          </h1>
-          <br />
-          <h5 style={divStyle}>
-            Minimalistic Sessions based Authentication app{" "}
-            <span role="img" aria-label="lock">
-              🔒{" "}
-            </span>
-            <br></br>Built with React + Redux, NodeJS, Express, MongoDB and
-            Bootstrap
-          </h5>
-          <h5 style={divStyle}>
-            Uses Cookies{" "}
-            <span role="img" aria-label="lock">
-              🍪{" "}
-            </span>
-          </h5>
-          <br />
           <div>
             <Switch>
               <Route exact path="/login" component={Login} />
