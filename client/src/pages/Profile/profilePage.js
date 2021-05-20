@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import Navbar from "../../components/NavBar/Navbar";
-import "../Profile/profilePage.css"
+import "../Profile/profilePage.css";
 
 function Profile() {
   const [users, setUsers] = useState([]);

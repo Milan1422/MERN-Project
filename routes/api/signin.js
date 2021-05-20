@@ -1,5 +1,5 @@
 const user = require("../../models/user");
-const userSession = require("../../models/UserSession");
+
 const UserSession = require("../../models/UserSession");
 
 module.exports = (app) => {
@@ -134,8 +134,8 @@ module.exports = (app) => {
             token: doc._id,
           });
         });
-      }
-    );
+      });
+    
   });
 
   app.get("/api/verify", (req, res, next) => {
@@ -164,7 +164,7 @@ module.exports = (app) => {
             success: true,
             message: "Good",
           });
-        }
+        };
       }
     );
   });
@@ -177,9 +177,10 @@ module.exports = (app) => {
       {
         _id: token,
         isDeleted: false,
-      },
-      {},
-      null,
+      }, 
+      {
+        '{$set: {isDeleted: true}}'  
+      }, null,
       (err, sessions) => {
         if (err) {
           return res.send({
@@ -187,12 +188,7 @@ module.exports = (app) => {
             message: "Error: Server error",
           });
         }
-        if (sessions.length !== 1) {
-          return res.send({
-            success: false,
-            message: "Error: Invalid",
-          });
-        } else {
+      else {
           return res.send({
             success: true,
             message: "Good",
