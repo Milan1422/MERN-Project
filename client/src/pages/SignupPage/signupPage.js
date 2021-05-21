@@ -3,8 +3,7 @@ import UseForm from "./useForm";
 
 const SignUpPage = () => {
   const { handleChange, values, handleSubmit } = UseForm();
-  console.log(values.email);
-  console.log(values.username);
+
   return (
     <div className="form-content-center">
       <form className="form" onSubmit={handleSubmit}>

@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import API from "../../utils/API";
 const UseForm = () => {
   const [values, setValues] = useState({
     username: "",
@@ -8,8 +8,6 @@ const UseForm = () => {
     skill: "",
     location: "",
   });
-
-  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -20,10 +18,18 @@ const UseForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("button clicked");
+    if (values.username && values.email && values.password) {
+      API.saveUser(values)
+        .then(
+          (res) =>
+            function loginAfter() {
+              alert("Signup Complete! Please go and log in.");
+            }
+        )
+        .catch((err) => console.log(err));
+    }
   };
-  return { handleChange, values, handleSubmit };
+  return { handleChange, handleSubmit, values };
 };
 
 export default UseForm;
