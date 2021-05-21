@@ -111,7 +111,7 @@ class Register extends Component {
             <input
               type="text"
               id="skill"
-              placeholder="Confirm Password"
+              placeholder="What are your skills"
               value={skill}
               error={errors.skill}
               onChange={this.onChange}
@@ -137,7 +137,7 @@ class Register extends Component {
 
           <div className="form-group">
             <button type="submit" className="btn btn-primary btn-block btn-lg">
-              Sign Up
+              <Link to="/login"> Sign Up</Link>
             </button>
           </div>
           <div className="text-center">

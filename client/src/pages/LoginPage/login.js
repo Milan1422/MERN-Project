@@ -16,13 +16,13 @@ class Login extends Component {
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/profile");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/profile");
     }
 
     if (nextProps.errors) {
@@ -88,11 +88,11 @@ class Login extends Component {
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-primary btn-block btn-lg">
-              Login
+              <Link to="/profile">Login</Link>
             </button>
           </div>
           <div className="text-center">
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link to="/signup">Register</Link>
           </div>
         </form>
       </div>

@@ -1,73 +1,48 @@
-import "../Profile/profilePage.css";
-
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Button, Card, CardTitle, CardSubtitle, CardBody } from "reactstrap";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 
-import { Redirect } from "react-router-dom";
-import { logout } from "../../actions/authActions";
-import { buttonReset } from "../../actions/frontEndActions";
-
-export class Profile extends Component {
-  static propTypes = {
-    button: PropTypes.bool,
-    authState: PropTypes.object.isRequired,
-    buttonReset: PropTypes.func.isRequired,
-    logout: PropTypes.func.isRequired,
-  };
-
+class Landing extends Component {
   onLogout = (e) => {
     e.preventDefault();
-    this.props.buttonReset();
-    this.props.logout();
+    this.props.logoutUser();
   };
 
   render() {
-    if (!this.props.authState.isAuthenticated) {
-      return <Redirect to="/" />;
-    }
-
-    const { user } = this.props.authState;
-
+    const { user } = this.props.auth;
+    console.log(this.props);
     return (
-      <div className="container">
-        <div className="main">
-          <Card>
-            <CardBody>
-              <CardTitle>
-                <h1>
-                  {user ? `Welcome, ${user.name}` : ""}{" "}
-                  <span role="img" aria-label="party-popper">
-                    🎉{" "}
-                  </span>{" "}
-                </h1>
-              </CardTitle>
-              <br />
-              <CardSubtitle>
-                <h5>
-                  {" "}
-                  You are now Logged In{" "}
-                  <span role="img" aria-label="clap">
-                    👏{" "}
-                  </span>
-                </h5>
-              </CardSubtitle>
-              <br />
-              <Button size="lg" onClick={this.onLogout} color="primary">
-                Logout
-              </Button>
-            </CardBody>
-          </Card>
+      <div className="container text-center mt-15">
+        <div className="row">
+          <div className="col-sm-12">
+            <h4>
+              Profile Page{" "}
+              <p className="mt-4">
+                Welcome to your Profile{" "}
+                <span style={{ fontFamily: "monospace" }}>CODE PALS</span> app
+              </p>
+            </h4>
+            <button
+              onClick={this.onLogout}
+              className="btn btn-large btn-light hoverable font-weight-bold"
+            >
+              Logout
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 }
+
+Landing.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+};
+
 const mapStateToProps = (state) => ({
-  //Maps state to redux store as props
-  button: state.ui.button,
-  authState: state.auth,
+  auth: state.auth,
 });
 
-export default connect(mapStateToProps, { logout, buttonReset })(Profile);
+export default connect(mapStateToProps, { logoutUser })(Landing);
