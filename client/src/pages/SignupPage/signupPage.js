@@ -1,8 +1,8 @@
 import React from "react";
-import useForm from "./useForm";
+import UseForm from "./useForm";
 
 const SignUpPage = () => {
-  const { handleChange, values, handleSubmit } = useForm();
+  const { handleChange, values, handleSubmit } = UseForm();
   console.log(values.email);
   console.log(values.username);
   return (
