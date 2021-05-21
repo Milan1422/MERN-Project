@@ -5,7 +5,6 @@ import "../Profile/profilePage.css"
 
 function Profile() {
   const [users, setUsers] = useState([]);
-  const [userProfile, setUserProfile] = useState({});
 
   useEffect(() => {
     loadUsers();

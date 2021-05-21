@@ -1,8 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import Title from "../../components/AppTitle/appTitle";
-import SignupBtn from "../../components/SignUp/signupButton";
-import LoginBtn from "../../components/LogIn/loginButton";
+import { Link } from "react-router-dom";
 import logo from "../../Style/assets/logo.png";
 import "../Landing/landing.css";
 
