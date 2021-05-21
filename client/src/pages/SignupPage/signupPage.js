@@ -25,7 +25,7 @@ const SignUpPage = () => {
             onChange={handleChange}
           />
         </div>
-        
+
         <div className="form-inputs">
           <label htmlFor="email" className="form-label">
             Email

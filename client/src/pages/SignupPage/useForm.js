@@ -20,16 +20,18 @@ const UseForm = () => {
     });
   };
 
+  // saves new user to mongodb after hitting submit button
   const handleSubmit = (e) => {
-    e.preventDefault();
-    
     if (values.username && values.email && values.password) {
-      API.saveUser(values).then(res =>console.log(res)).catch(err => console.log(err))
+      API.saveUser(values)
+        .then((res) => function loginAfter() {
+          alert("Signup Complete! Please go and log in.")
+        })
+        .catch((err) => console.log(err));
     }
   };
 
   return { handleChange, values, handleSubmit };
-
 };
 
 export default UseForm;
