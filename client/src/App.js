@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // local components
 import "./App.css";
 import Landing from "./pages/Landing/landing";
-import SignupPage from "./pages/SingupPage/SignUpPage";
+import SignupPage from "./pages/SignupPage/signupPage";
 import LoginPage from "./pages/LoginPage/loginpage";
 import Profile from "./pages/Profile/profilePage";
 

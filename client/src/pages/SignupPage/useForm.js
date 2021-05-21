@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEFfect } from "react";
 
-const UseForm = () => {
+const useForm = () => {
   const [values, setValues] = useState({
-    username: "",
     email: "",
+    username: "",
     password: "",
-    skill: "",
+    skills: "",
     location: "",
   });
-
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,12 +18,11 @@ const UseForm = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("button clicked");
+    setIsSubmitting(true);
   };
+
   return { handleChange, values, handleSubmit };
 };
-
-export default UseForm;
+export default useForm;
