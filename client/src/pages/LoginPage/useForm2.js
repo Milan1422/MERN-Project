@@ -19,8 +19,8 @@ const UseForm2 = () => {
     e.preventDefault();
 
     if (values.email && values.password) {
-      API.getUsers(values)
-        .then((res) => console.log("sign in"))
+      API.signUser(values)
+        .then((res) => console.log("button"))
         .catch((err) => console.log(err));
     }
   };

@@ -16,7 +16,7 @@ export default {
     return axios.post("/api/users", userData);
   },
 
-  getUsers: function (values) {
+  signUser: function (values) {
     return axios.post("/api/login/", values);
   },
 };
