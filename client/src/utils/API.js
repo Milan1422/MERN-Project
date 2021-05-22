@@ -22,15 +22,15 @@ export default {
   getMeets: function() {
     return axios.get("/api/meets");
   },
-  // Gets the user with the given id
+  // Gets a meet with the given id
   getMeet: function(id) {
     return axios.get("/api/meets/" + id);
   },
-  // Deletes the user with the given id
+  // Deletes a meet with the given id
   deleteMeet: function(id) {
     return axios.delete("/api/meets/" + id);
   },
-  // Saves a user to the database
+  // Saves a meet to the database
   saveMeet: function(meetData) {
     return axios.post("/api/meets", meetData);
   }
