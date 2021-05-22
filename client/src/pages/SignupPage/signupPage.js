@@ -1,30 +1,14 @@
 import React from "react";
 import useForm from "./useForm";
+import { Link } from "react-router-dom";
 
 const SignUpPage = () => {
   const { handleChange, values, handleSubmit } = useForm();
-  console.log(values.email);
-  console.log(values.username);
+
   return (
     <div className="form-content-center">
       <form className="form" onSubmit={handleSubmit}>
         <h1>Create Account</h1>
-        <div className="form-inputs">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            name="email"
-            id="email"
-            placeholder="Please enter your email address"
-            aria-describedby="emailHelp"
-            required
-            value={values.email}
-            onChange={handleChange}
-          />
-        </div>
 
         <div className="form-inputs">
           <label htmlFor="username" className="form-label">
@@ -38,6 +22,23 @@ const SignUpPage = () => {
             placeholder="Enter your username"
             required
             value={values.username}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-inputs">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            name="email"
+            id="email"
+            placeholder="Please enter your email address"
+            aria-describedby="emailHelp"
+            required
+            value={values.email}
             onChange={handleChange}
           />
         </div>
@@ -100,7 +101,7 @@ const SignUpPage = () => {
           Sign Up
         </button>
         <span className="form-input-login">
-          Already have an account? Login <a href="#">here</a>
+          Already have an account? Login <Link to="/login">here</Link>
         </span>
       </form>
     </div>
