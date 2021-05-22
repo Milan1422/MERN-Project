@@ -2,7 +2,7 @@ import React from "react";
 import "./loginpage.css";
 import { Goldenrod } from "../../utils/colors";
 import logo from "../../Style/assets/logo.png";
-import UseForm2 from "../../pages/LoginPage/useForm2";
+import UseForm2 from "./useForm2";
 
 const LoginPage = () => {
   const { handleChange, values, handleSubmit } = UseForm2();
@@ -12,14 +12,14 @@ const LoginPage = () => {
       <h1 className="logintitle">Credentials</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Email or Username</label>
+          <label>Email</label>
           <input
-            type="text"
+            type="email"
             className="form-control"
-            id="username"
-            name="username"
-            placeholder="Enter your username"
-            value={values.username}
+            id="email"
+            name="email"
+            placeholder="Enter your Email"
+            value={values.email}
             onChange={handleChange}
           />
         </div>

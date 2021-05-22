@@ -10,5 +10,6 @@ router
   .get(usersController.findById)
   .put(usersController.update)
   .delete(usersController.remove);
+//.post(usersController.)
 
 module.exports = router;

@@ -3,7 +3,6 @@ import API from "../../utils/API";
 
 const UseForm2 = () => {
   const [values, setValues] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -19,14 +18,9 @@ const UseForm2 = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (values.username || (values.email && values.password)) {
-      API.getUser(values)
-        .then(
-          (res) =>
-            function goToProfile() {
-              res.redirect("/profile");
-            }
-        )
+    if (values.email && values.password) {
+      API.getUsers(values)
+        .then((res) => console.log("sign in"))
         .catch((err) => console.log(err));
     }
   };

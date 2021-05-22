@@ -72,6 +72,7 @@ exports.signup = (req, res, next) => {
     });
 };
 exports.login = (req, res) => {
+  console.log("here");
   let { email, password } = req.body;
   let errors = [];
   if (!email) {
