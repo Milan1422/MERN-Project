@@ -1,4 +1,4 @@
-const User = require("../models/User");
+const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { createJWT } = require("../client/src/utils/auth");
@@ -71,7 +71,7 @@ exports.signup = (req, res, next) => {
       });
     });
 };
-exports.signin = (req, res) => {
+exports.login = (req, res) => {
   let { email, password } = req.body;
   let errors = [];
   if (!email) {

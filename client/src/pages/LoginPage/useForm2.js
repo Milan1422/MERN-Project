@@ -2,7 +2,7 @@ import { useState } from "react";
 import API from "../../utils/API";
 
 const UseForm2 = () => {
-  const [values, setValues, errors] = useState({
+  const [values, setValues] = useState({
     username: "",
     email: "",
     password: "",
