@@ -8,6 +8,7 @@ import Landing from "./pages/Landing/landing";
 import SignupPage from "./pages/SignupPage/signupPage";
 import LoginPage from "./pages/LoginPage/loginpage";
 import Profile from "./pages/Profile/profilePage";
+import Meet from "./pages/Meets/Meets";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" exact component={LoginPage} />
         <Route path="/signup" exact component={SignupPage} />
         <Route path="/profile" exact component={Profile} />
+        <Route path="/meets" exact component={Meet} />
       </Switch>
     </Router>
   );
