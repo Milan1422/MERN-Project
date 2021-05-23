@@ -1,36 +1,58 @@
 import React from "react";
-import { Link } from "react-router-dom"
-import logo from "../../Style/assets/logo.png"
-import "./loginpage.css"
+import "./loginpage.css";
+import { Goldenrod } from "../../utils/colors";
+import logo from "../../Style/assets/logo.png";
+import UseForm2 from "./useForm2";
+import history from "../../utils/history";
 
-function LoginPage() {
-  
-
+const LoginPage = () => {
+  const { handleChange, values, handleSubmit } = UseForm2();
 
   return (
     <div>
-      <h1 className ="logintitle">Credentials</h1>
-      <form className="login-form">
+      <h1 className="logintitle">Credentials</h1>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>Email or Username</label>
+          <label>Email</label>
           <input
             type="email"
             className="form-control"
-            id="login-email"
-            aria-describedby="emailHelp"
+            id="email"
+            name="email"
+            placeholder="Enter your Email"
+            value={values.email}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
           <label>Password</label>
-          <input type="password" className="form-control" id="login-password" />
+          <input
+            type="password"
+            className="form-control"
+            id="login-password"
+            name="password"
+            placeholder="Enter your password"
+            value={values.password}
+            onChange={handleChange}
+          />
         </div>
-        <Link to = "/profile" className="btn-log">
-          Login
-        </Link>
-        <img src={logo} className= "codemonkey" alt="logo" style={{ width:"300px" }} />
+        <button
+          style={{ background: Goldenrod }}
+          className="btn rounded pill mt-2"
+          onSubmit={handleSubmit}
+          onClick={(event) => history.push("/profile")}
+        >
+          Log in
+        </button>
+        <img
+          src={logo}
+          className="codemonkey"
+          alt="logo"
+          style={{ width: "375px" }}
+        />
       </form>
     </div>
   );
-}
+};
 
 export default LoginPage;

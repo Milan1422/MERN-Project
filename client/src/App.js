@@ -13,10 +13,11 @@ import singleMeet from "./pages/Meets/singleMeet";
 import { StoreProvider } from "./utils/GlobalState";
 import CreateNewMeet from "./pages/Meets/createMeet";
 import JoinedList from "./pages/Meets/joinedMeets";
+import history from "./utils/history"
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <div>
         <StoreProvider>
           <Switch>
