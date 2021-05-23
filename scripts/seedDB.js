@@ -66,18 +66,21 @@ db.User
 const meetSeed = [
   {
     title: "MongoDB and Heroku",
+    username: "JM",
     description: "Discussing MongoDB and Heroku deployment to be used in MERN applications. Come and join us for this topic!",
     location: "Atlanta",
     date: new Date(Date.now())
   },
   {
     title: "HTML",
+    username: "LS",
     description: "Discussing simple topics on how to start your simple html webpage! We will cover essentials from tags to maybe some styling!",
     location: "Duluth",
     date: new Date(Date.now())
   },
   {
     title: "Landing your first job interview",
+    username: "EZ",
     description: "Discussing tips and tricks to exel in your first coding interview, please come and join this discussion that will help you have the upper hand to land that dream job you always wanted!",
     location: "Stone Mountain",
     date: new Date(Date.now())

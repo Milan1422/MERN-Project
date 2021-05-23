@@ -11,8 +11,8 @@ export const SidebarData = [
         cName: "nav-text"
     },
     {
-        title: "Friends",
-        path: "/friends",
+        title: "Create a Meet",
+        path: "/createmeet",
         icon: <FaIcons.FaUserFriends/>,
         cName: "nav-text"
     },
