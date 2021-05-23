@@ -37,7 +37,7 @@ const SingleMeet = props => {
         <div className="row">
           <div className="col-md-12">
             <jumbotron>
-              <h1>
+              <h1 className="text-center mt-3 mb-3">
                 {state.currentMeet.title} by {state.currentMeet.username}
               </h1>
             </jumbotron>
@@ -51,11 +51,11 @@ const SingleMeet = props => {
             </article>
           </div>
           {state.joins.indexOf(state.currentMeet) !== -1 ? (
-            <button className="btn btn-danger" onClick={removeJoin}>
+            <button className="btn btn-danger mt-5" onClick={removeJoin}>
                 Remove
             </button>
           ) : (
-            <button className="btn btn-success" onClick={addJoin}>
+            <button className="btn btn-success mt-5" onClick={addJoin}>
                 Join!
             </button>
           )}
