@@ -30,7 +30,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/userlist", {
 });
 
 app.use(bodyParser.json());
-
 app.use(cors());
 app.use("/api", authRoutes);
 // Start the API server

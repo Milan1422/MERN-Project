@@ -1,6 +1,7 @@
 {
+    "name": "Code Pal: Social platform for coders",
     "short_name": "Code Pal",
-    "name": "Code Pal: Social Platform for coders",
+    "description": "Social platform for coders to connect",
     "icons": [
       {
         "src": "favicon.ico",

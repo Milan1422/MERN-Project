@@ -10,7 +10,7 @@
     border-radius: 40px 40px 15px 15px;
 }
 
-form {
+.login-form {
     position: relative;
     top: 100px;
     padding-top: 75px;
@@ -21,16 +21,24 @@ form {
     border-radius: 15px 15px 50px 50px;
 }
 
-button {
-    height:40px; 
-    width:100px; 
-    position: absolute;
-    left:32.5%;
+.btn-log {
+    display: block;
+    margin-top: 35px;
+    background-color: #daa521;
+    text-align: center;
+    border: 1px solid grey;
+    color: #fff;
+    height:35px; 
+    width:80px; 
+    border-radius: 10px;
+    position:relative;
+    left:36.5%; 
 }
 
 .codemonkey {
-position:fixed;
-right: 0%
+position:relative;
+bottom: 5%;
+right: 1%
 }
 
 .form-group, .form-control {
@@ -38,7 +46,3 @@ right: 0%
     align-content: center;
     margin: auto;
 }
-
-/* #login-email, input[type=password]{
-
-} */
