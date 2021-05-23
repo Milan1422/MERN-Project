@@ -10,18 +10,27 @@ import LoginPage from "./pages/LoginPage/loginpage";
 import Profile from "./pages/Profile/profilePage";
 import Meets from "./pages/Meets/Meets";
 import singleMeet from "./pages/Meets/singleMeet";
+import { StoreProvider } from "./utils/GlobalState";
+import CreateNewMeet from "./pages/Meets/createMeet";
+import JoinedList from "./pages/Meets/joinedMeets";
 
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/login" exact component={LoginPage} />
-        <Route path="/signup" exact component={SignupPage} />
-        <Route path="/profile" exact component={Profile} />
-        <Route path="/meets" exact component={Meets} />
-        <Route path="/meets/:id" exact component={singleMeet} />
-      </Switch>
+      <div>
+        <StoreProvider>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/login" exact component={LoginPage} />
+            <Route path="/signup" exact component={SignupPage} />
+            <Route path="/profile" exact component={Profile} />
+            <Route path="/meets" exact component={Meets} />
+            <Route path="/meets/:id" exact component={singleMeet} />
+            <Route path="/createmeet" exact component={CreateNewMeet} />
+            <Route path="/joinedmeets" exact component={JoinedList} />
+          </Switch>
+        </StoreProvider>
+      </div>
     </Router>
   );
 }

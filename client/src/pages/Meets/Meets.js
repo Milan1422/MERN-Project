@@ -1,57 +1,65 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/NavBar/Navbar";
+import { Link } from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState";
+import { REMOVE_MEET, UPDATE_MEETS, LOADING } from "../../utils/actions";
 import API from "../../utils/API";
 import "./meets.css";
 
 function Meets() {
-  // sets inital meets state
-  const [meets, setMeets] = useState([]);
+  const [state, dispatch] = useStoreContext();
+
+  const removeMeet = id => {
+    API.deleteMeet(id)
+      .then(() => {
+        dispatch({
+          type: REMOVE_MEET,
+          _id: id
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getMeets = () => {
+    dispatch({ type: LOADING });
+    API.getMeets()
+      .then(results => {
+        dispatch({
+          type: UPDATE_MEETS,
+          meets: results.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   useEffect(() => {
-    loadMeets();
-  });
+    getMeets();
+  }, []);
 
-  //   function that loads all meets using axios
-  function loadMeets() {
-    // here we make a axios api call to get all meets
-    API.getMeets()
-      // then we set the state with the received data
-      .then((res) => setMeets(res.data))
-      .catch((err) => console.log(err));
-  }
-
-  //   here is we return JSX using the data received from MongoDB
   return (
     <div>
-      <Navbar />
-      {meets.length ? (
-        <div>
-          {meets.map((meet) => {
-            return (
-              <div key={meet._id}>
-                <div className="list-group">
-                  <a
-                    href={"/meets/" + meets._id} 
-                    className="list-group-item list-group-item-action"
-                  >
-                    <div className="d-flex w-100 justify-content-between">
-                      <h5 className="mb-1">{meet.title}</h5>
-                      <small>Posted {meet.date}</small>
-                      <span className="badge badge-primary badge-pill">10</span>
-                    </div>
-                    <p>Description: {meet.description} </p>
-                    <div>
-                      <small>Location: {meet.location}</small>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+      <Navbar/>
+      <h1>All Current Meets</h1>
+      <h3 className="mb-5 mt-5">Click on a meet to learn more!</h3>
+      {state.meets.length ? (
+        <ul className="list-group">
+          {state.meets.map(meet => (
+            <li className="list-group-item" key={meet._id}>
+              <Link to={"/meets/" + meet._id}>
+                <strong>
+                  {meet.title} by {meet.username}
+                </strong>
+              </Link>
+              <button className="btn btn-outline-secondary" onClick={() => removeMeet(meet._id)}></button>
+            </li>
+          ))}
+        </ul>
       ) : (
-        <h3>No Results to Display</h3>
+        <h3>You haven't joined any meets yet!</h3>
       )}
+      <div className="mt-5">
+        <Link to="joinedMeets">View Joined Meets!</Link>
+      </div>
     </div>
   );
 }

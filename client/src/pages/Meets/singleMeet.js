@@ -1,64 +1,75 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/NavBar/Navbar";
 import API from "../../utils/API";
+import { Link } from "react-router-dom";
+import { useStoreContext } from "../../utils/GlobalState";
+import { SET_CURRENT_MEET, ADD_JOIN, REMOVE_JOIN } from "../../utils/actions";
 import "./meets.css";
 
-function singleMeet() {
-  // sets inital meet state
-  const [meet, setMeet] = useState({});
+const SingleMeet = props => {
+  const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    loadMeet();
-  });
+    API.getMeet(props.match.params.id)
+      .then(res => dispatch({ type: SET_CURRENT_MEET, meet: res.data }))
+      .catch(err => console.log(err));
+  }, []);
 
-  function loadMeet() {
-    // here we make a axios api call to get the meet by id
-    API.getMeet()
-      // then we set the state with the received data
-      .then((res) => setMeet(res.data))
-      .catch((err) => console.log(err));
-  }
+  const addJoin = () => {
+    dispatch({
+      type: ADD_JOIN,
+      meet: state.currentMeet
+    });
+  };
 
-  //   here is we return JSX using the data received from MongoDB
+  const removeJoin = () => {
+    dispatch({
+      type: REMOVE_JOIN,
+      _id: state.currentMeet._id
+    });
+  };
+
   return (
-    <div className="container">
-      <Navbar />
-      <div className="container">
-        <div className="modal" tabindex="-1">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">{meet.title}</h5>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <p>{meet.description}</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Message
-                </button>
-                <button type="button" className="btn btn-primary">
-                  Join
-                </button>
-              </div>
-            </div>
+    <>
+    <Navbar/>
+    {state.currentMeet ? (
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <jumbotron>
+              <h1>
+                {state.currentMeet.title} by {state.currentMeet.username}
+              </h1>
+            </jumbotron>
+          </div>
+        </div>
+        <div classname="row">
+          <div classname="col-md-10 md-offset-1">
+            <article>
+              <h1>Topic:</h1>
+              <p>{state.currentMeet.description}</p>
+            </article>
+          </div>
+          {state.joins.indexOf(state.currentMeet) !== -1 ? (
+            <button className="btn btn-danger" onClick={removeJoin}>
+                Remove from Favorites!
+            </button>
+          ) : (
+            <button className="btn" onClick={addJoin}>
+                Join the Meet!
+            </button>
+          )}
+        </div>
+        <div classname="row">
+          <div classname="col-md-2">
+            <Link to="/meets">← Back to Posts</Link>
           </div>
         </div>
       </div>
-    </div>
+    ) : (
+      <div>loading...</div>
+    )}</>
   );
-}
+};
 
-export default singleMeet;
+export default SingleMeet;
