@@ -3,6 +3,7 @@ import "./loginpage.css";
 import { Goldenrod } from "../../utils/colors";
 import logo from "../../Style/assets/logo.png";
 import UseForm2 from "./useForm2";
+import history from "../../utils/history";
 
 const LoginPage = () => {
   const { handleChange, values, handleSubmit } = UseForm2();
@@ -39,6 +40,7 @@ const LoginPage = () => {
           style={{ background: Goldenrod }}
           className="btn rounded pill mt-2"
           onSubmit={handleSubmit}
+          onClick={(event) => history.push("/profile")}
         >
           Log in
         </button>

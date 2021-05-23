@@ -19,7 +19,9 @@ const UseForm = () => {
 
   const handleSubmit = (e) => {
     if (values.username && values.email && values.password) {
-      API.saveUser(values)
+      API.saveUser(values);
+      console
+        .log(values)
         .then(
           (res) =>
             function loginAfter() {

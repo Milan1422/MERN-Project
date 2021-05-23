@@ -8,10 +8,11 @@ import Landing from "./pages/Landing/landing";
 import SignupPage from "./pages/SignupPage/signupPage";
 import LoginPage from "./pages/LoginPage/loginpage";
 import Profile from "./pages/Profile/profilePage";
+import history from "./utils/history";
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/" exact component={Landing} />
         <Route path="/login" exact component={LoginPage} />
