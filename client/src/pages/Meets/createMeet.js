@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { useStoreContext } from '../../utils/GlobalState';
 import { ADD_MEET, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
+import Navbar from '../../components/NavBar/Navbar';
 
 function CreateNewMeet() {
   const titleRef = useRef();
@@ -35,17 +36,12 @@ function CreateNewMeet() {
 
   return (
     <div>
-      <div className="jumbotron">
-        <img
-          className="img-fluid img-thumbnail"
-          src="https://images.pexels.com/photos/459688/pexels-photo-459688.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-        />
-      </div>
-      <h1>Create a new meet</h1>
-      <form className="form-group mt-5 mb-5" onSubmit={handleSubmit}>
+      <Navbar/>
+      <h1 className="text-center mt-3">Create a new meet</h1>
+      <form className="form-group" onSubmit={handleSubmit}>
         <label htmlFor="title">Title:</label>
         <input
-          className="form-control mb-5"
+          className="form-control mb-3"
           required
           ref={titleRef}
           id="title"
@@ -53,7 +49,7 @@ function CreateNewMeet() {
         />
         <label htmlFor="description">Description:</label>
         <textarea
-          className="form-control mb-5"
+          className="form-control mb-3"
           required
           ref={descriptionRef}
           id="body"
@@ -61,7 +57,7 @@ function CreateNewMeet() {
         />
         <label htmlFor="screen name">Screen Name:</label>
         <input
-          className="form-control mb-5"
+          className="form-control mb-3"
           ref={usernameRef}
           id="screen name"
           placeholder="Screen name"
@@ -74,11 +70,11 @@ function CreateNewMeet() {
           placeholder="Where is the location?"
         />
         <button
-          className="btn btn-success mt-3 mb-5"
+          className="btn btn-success text-center justify-content-center"
           disabled={state.loading}
           type="submit"
         >
-          Create Meet
+          Create
         </button>
       </form>
     </div>

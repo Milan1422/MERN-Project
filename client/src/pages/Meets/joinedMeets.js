@@ -35,7 +35,7 @@ const JoinedList = () => {
                   {meet.title} by {meet.username}
                 </strong>
               </Link>
-              <button className="btn btn-secondary" onClick={() => removeFromJoins(meet._id)}></button>
+              <button className="btn btn-danger" onClick={() => removeFromJoins(meet._id)}>Remove</button>
             </li>
           ))}
         </ul>

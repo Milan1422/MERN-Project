@@ -50,7 +50,7 @@ function Meets() {
                   {meet.title} by {meet.username}
                 </strong>
               </Link>
-              <button className="btn btn-outline-secondary" onClick={() => removeMeet(meet._id)}></button>
+              {/* <button className="btn btn-outline-danger" onClick={() => removeMeet(meet._id)}>X</button> */}
             </li>
           ))}
         </ul>

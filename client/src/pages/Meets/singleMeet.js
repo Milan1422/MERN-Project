@@ -52,11 +52,11 @@ const SingleMeet = props => {
           </div>
           {state.joins.indexOf(state.currentMeet) !== -1 ? (
             <button className="btn btn-danger" onClick={removeJoin}>
-                Remove from Favorites!
+                Remove
             </button>
           ) : (
-            <button className="btn" onClick={addJoin}>
-                Join the Meet!
+            <button className="btn btn-success" onClick={addJoin}>
+                Join!
             </button>
           )}
         </div>
