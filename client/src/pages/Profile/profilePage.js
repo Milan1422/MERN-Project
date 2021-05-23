@@ -12,9 +12,9 @@ function Profile() {
 
   function loadUsers() {
     // Add code here to get all users from the database and store them using setUsers
-    // API.getUsers()
-    //   .then((res) => setUsers(res.data))
-    //   .catch((err) => console.log(err));
+    API.getUsers()
+      .then((res) => setUsers(res.data))
+      .catch((err) => console.log(err));
   }
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/NavBar/Navbar";
 import API from "../../utils/API";
+import "./meets.css";
 
 function Meets() {
   // sets inital meets state
@@ -8,7 +9,7 @@ function Meets() {
 
   useEffect(() => {
     loadMeets();
-  }, []);
+  });
 
   //   function that loads all meets using axios
   function loadMeets() {
@@ -30,15 +31,18 @@ function Meets() {
               <div key={meet._id}>
                 <div className="list-group">
                   <a
-                    href="#"
+                    href={"/meets/" + meets._id} 
                     className="list-group-item list-group-item-action"
                   >
                     <div className="d-flex w-100 justify-content-between">
                       <h5 className="mb-1">{meet.title}</h5>
                       <small>Posted {meet.date}</small>
+                      <span className="badge badge-primary badge-pill">10</span>
                     </div>
                     <p>Description: {meet.description} </p>
-                    <small>Location: {meet.location}</small>
+                    <div>
+                      <small>Location: {meet.location}</small>
+                    </div>
                   </a>
                 </div>
               </div>
