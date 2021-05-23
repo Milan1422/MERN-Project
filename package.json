@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Code Pals Application",
   "main": "server.js",
+  "engines": {
+    "node": "14.15.5"
+  },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
