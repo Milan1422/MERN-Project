@@ -14,12 +14,17 @@ const { db } = require("./models/user");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(routes);
+
+app.use(bodyParser.json());
+app.use(cors());
+app.use("/api", authRoutes);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
-app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codepals", {
@@ -28,10 +33,6 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/codepals", {
   useCreateIndex: true,
   useFindAndModify: false,
 });
-
-app.use(bodyParser.json());
-app.use(cors());
-app.use("/api", authRoutes);
 // Start the API server
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
