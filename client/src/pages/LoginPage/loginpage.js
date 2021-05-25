@@ -1,6 +1,5 @@
 import React from "react";
 import "./loginpage.css";
-import { Goldenrod } from "../../utils/colors";
 import logo from "../../Style/assets/logo.png";
 import UseForm2 from "./useForm2";
 import history from "../../utils/history";
@@ -10,8 +9,8 @@ const LoginPage = () => {
 
   return (
     <div>
-      <h1 className="logintitle">Credentials</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className="login-title">Credentials</h1>
+      <form className ="login-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Email</label>
           <input
@@ -37,8 +36,7 @@ const LoginPage = () => {
           />
         </div>
         <button
-          style={{ background: Goldenrod }}
-          className="btn rounded pill mt-2"
+          className="btn-log"
           onSubmit={handleSubmit}
           onClick={(event) => history.push("/profile")}
         >
@@ -46,9 +44,9 @@ const LoginPage = () => {
         </button>
         <img
           src={logo}
-          className="codemonkey"
+          className="code-monkey"
           alt="logo"
-          style={{ width: "375px" }}
+          style={{ width: "300px" }}
         />
       </form>
     </div>
