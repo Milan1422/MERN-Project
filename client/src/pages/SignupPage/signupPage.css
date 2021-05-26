@@ -1,0 +1,64 @@
+.signup-title{
+    margin-top:auto;
+    text-align: center;
+    background-color: goldenrod;
+    width: 100%;
+}
+.accounted{
+    text-align: center;
+    margin-top: 5%;
+}
+
+.monkey1{
+    display: block;
+    position: relative;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    right:9.5%; 
+}
+
+.btn-sign{
+    background-color:goldenrod;
+    border:2px solid purple;
+    text-align: center;
+    position: absolute;
+    display:block;
+    border-radius: 50%;
+    height:10%;
+    width:35%;
+    left:30%;
+    margin-top:25px;
+}
+.password{
+    margin-left: 2%;
+    margin-top:10px;
+    margin-top: 2%;
+    margin-right:2%;
+}
+.username2{
+    margin-left:2%;
+    margin-top:10px;
+    margin-top: 2%;
+    margin-right:2%;
+}
+.email{
+    margin-left:2%;
+    margin-top:10px;
+    margin-top: 2%;
+    margin-right:2%;
+}
+.skill{
+    margin-left:2%;
+    margin-top:10px;
+    margin-top: 2%;
+    margin-right:2%;
+}
+
+.location{
+    margin-left:2%;
+    margin-top:10px;
+    margin-top: 2%;
+    margin-right:2%;
+}
+   
+
