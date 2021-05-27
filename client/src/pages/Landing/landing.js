@@ -5,7 +5,8 @@ import "../Landing/landing.css";
 
 function Landing() {
   return (
-    <div classs="container-fluid">
+    <div class="container-fluid">
+      <h1 className="landing-title">Code Pal</h1>
       <div className="main">
       <div className="wrapper">
         <div className="left">
