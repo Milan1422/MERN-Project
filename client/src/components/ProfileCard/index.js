@@ -1,4 +1,5 @@
 import React, {useState, useEffect } from "react";
+import img from "../../Style/assets/SMOOVE.jpg";
 import API from "../../utils/API";
 import "./style.css";
 
@@ -18,14 +19,18 @@ function ProfileCard () {
     }
   
 return (
-    <div className="card">
-        <div className="img-container">
-            <img  src={user.image} alt="userimage"/>
-        </div>
+    <div className="card" stylee={{ left:"40%" }}>
         <div className="userinfo">
+        <img src={img} alt="smoove" style={{ width: "200px" }} />
             <ul>
                 <li>
-                    <strong>{user.username}</strong>
+                    <strong>{user.username} Jbsmoove</strong>
+                </li>
+                <li>
+                    <strong>{user.skill} React</strong>
+                </li>
+                <li>
+                    <strong>{user.location} Detriot</strong>
                 </li>
             </ul>
         </div>
