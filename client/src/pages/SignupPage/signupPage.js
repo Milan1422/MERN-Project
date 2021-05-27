@@ -1,6 +1,8 @@
 import React from "react";
 import useForm from "./useForm";
 import { Link } from "react-router-dom";
+import "./signupPage.css"
+import logo from "../../Style/assets/logo.png"
 
 const SignUpPage = () => {
   const { handleChange, values, handleSubmit } = useForm();
@@ -8,11 +10,15 @@ const SignUpPage = () => {
   return (
     <div className="form-content-center">
       <form className="form" onSubmit={handleSubmit}>
-        <h1>Create Account</h1>
-
-        <div className="form-inputs">
+        <h1 className="signup-title">Create Account</h1>
+        <div className="accounted">
+        <span className="form-input-login ">
+          Already have an account? Login <Link to="/login">here</Link>
+        </span>
+        </div>
+        <div className="form-inputs username2">
           <label htmlFor="username" className="form-label">
-            username
+            Username
           </label>
           <input
             type="username"
@@ -25,8 +31,10 @@ const SignUpPage = () => {
             onChange={handleChange}
           />
         </div>
+       
+        
 
-        <div className="form-inputs">
+        <div className="form-inputs email">
           <label htmlFor="email" className="form-label">
             Email
           </label>
@@ -43,9 +51,9 @@ const SignUpPage = () => {
           />
         </div>
 
-        <div className="form-inputs">
+        <div className="form-inputs password">
           <label htmlFor="password" className="form-label">
-            password
+            Password
           </label>
           <input
             type="password"
@@ -59,7 +67,7 @@ const SignUpPage = () => {
           />
         </div>
 
-        <div className="form-inputs">
+        <div className="form-inputs skill">
           <label htmlFor="skill" className="form-label">
             Skill
           </label>
@@ -76,7 +84,7 @@ const SignUpPage = () => {
           />
         </div>
 
-        <div className="form-inputs">
+        <div className="form-inputs location">
           <label htmlFor="location" className="form-label">
             Location
           </label>
@@ -94,15 +102,18 @@ const SignUpPage = () => {
         </div>
 
         <button
-          className="form-input-button btn btn-primary rounded-pill"
+          className="btn-sign"
           onSubmit={handleSubmit}
           type="submit"
-        >
-          Sign Up
+        >Sign Up
         </button>
-        <span className="form-input-login">
-          Already have an account? Login <Link to="/login">here</Link>
-        </span>
+
+        <img
+          src={logo}
+          className="monkey1"
+          alt="logo"
+          style={{ width: "450px" }}
+        />
       </form>
     </div>
   );

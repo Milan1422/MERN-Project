@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../../utils/API";
 import Navbar from "../../components/NavBar/Navbar";
+import ProfileCard from "../../components/ProfileCard/index";
 import "../Profile/profilePage.css"
 
 function Profile() {
@@ -12,14 +13,15 @@ function Profile() {
 
   function loadUsers() {
     // Add code here to get all users from the database and store them using setUsers
-    // API.getUsers()
-    //   .then((res) => setUsers(res.data))
-    //   .catch((err) => console.log(err));
+    API.getUsers()
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }
 
   return (
     <div>
       <Navbar />
+      <ProfileCard />
       {users.length ? (
         <div>
           {users.map((user) => {
