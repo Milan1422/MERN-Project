@@ -17,7 +17,7 @@
     margin: auto;
     background-color:#843B62;
     width: 80%;
-    height: 420px;
+    height: 440px;
     border-radius: 15px 15px 50px 50px;
 }
 
@@ -37,7 +37,7 @@
 
 .code-monkey {
 position:relative;
-bottom: 5%;
+bottom: 6%;
 right: 1%
 }
 

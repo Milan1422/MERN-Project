@@ -3,6 +3,7 @@ import "./loginpage.css";
 import logo from "../../Style/assets/logo.png";
 import UseForm2 from "./useForm2";
 import history from "../../utils/history";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const { handleChange, values, handleSubmit } = UseForm2();
@@ -18,7 +19,7 @@ const LoginPage = () => {
             className="form-control"
             id="email"
             name="email"
-            placeholder="Enter your Email"
+            placeholder="Email"
             value={values.email}
             onChange={handleChange}
           />
@@ -30,18 +31,18 @@ const LoginPage = () => {
             className="form-control"
             id="login-password"
             name="password"
-            placeholder="Enter your password"
+            placeholder="Password"
             value={values.password}
             onChange={handleChange}
           />
         </div>
-        <button
+        <Link to = "/profile"
           className="btn-log"
           onSubmit={handleSubmit}
           onClick={(event) => history.push("/profile")}
         >
           Log in
-        </button>
+        </Link>
         <img
           src={logo}
           className="code-monkey"
