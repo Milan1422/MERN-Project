@@ -28,11 +28,6 @@ function Profile() {
             return (
               <div className="card-deck scroll" key={user._id}>
                 <div className="card">
-                  <img
-                    src={user.image}
-                    className="card-img-top"
-                    alt="profile pic"
-                  />
                   <div className="card-body">
                     <h5 className="card-title">{user.username}</h5>
                     <p className="card-text">
@@ -45,7 +40,7 @@ function Profile() {
           })}
         </div>
       ) : (
-        <h3>No Results to Display</h3>
+        <h3></h3>
       )}
     </div>
   );
