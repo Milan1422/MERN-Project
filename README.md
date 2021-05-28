@@ -1,5 +1,9 @@
 # Code Pal: Full Stack MERN Application
 
+User Story: The new way for developers of all levels to connect, set up meets based on language, and more to come...
+
+This Application should be viewed on a mobile setting if being viewed on the computer if not the styling will be off we created most of the styling ourselves to customize it for a mobile phone view. 
+
 This is going to be a full stack application that will be a forum for Coders like us. They will be able to create a profile to connect with other coders, upload a picture, select language of choice, etc. It will be setup in the backend with Mongo DB and built on the frontend with React. We will be using authentication with Facebook or a user can sign up with their own username and password. There are little attributes on the pages that only coders would get enjoy the application!
 
 # Lessons:
@@ -12,6 +16,19 @@ The whole Boot Camp has been a great experience very hard work and very challeng
 
 # Screenshots:
 
+![Code Pal](https://user-images.githubusercontent.com/73844796/119910929-427bbc80-bf26-11eb-8932-552c7a07cbc0.png)
+
+![Code Pal2](https://user-images.githubusercontent.com/73844796/119910930-427bbc80-bf26-11eb-83ec-84882463407f.png)
+
+![Code Pal3](https://user-images.githubusercontent.com/73844796/119910931-427bbc80-bf26-11eb-8f49-d940c76351bd.png)
+
+![Code Pal4](https://user-images.githubusercontent.com/73844796/119910928-41e32600-bf26-11eb-8b3c-1d7d984781fd.png)
+
 # Deployment URL:
 
 * https://immense-hollows-99225.herokuapp.com/
+
+# Project Presentation Link:
+
+* https://docs.google.com/presentation/d/17vNzWSiDMS_ccxc2mA63PVzeRtU6lQiAlvCyqpJCbCM/edit?usp=sharing
+
